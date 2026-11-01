@@ -1,33 +1,38 @@
-import java.util.Arrays;
+import java.util.*;
 
-// Define the Classroom class
 public class Classroom {
-    // Instance variables
     private String className;
     private String[] students;
 
-    // Parameterized constructor that initializes className and students
+    // Parameterized Constructor
     public Classroom(String className, String[] students) {
         this.className = className;
         this.students = students;
     }
 
-    // Method to print the values of all variables
     public void printClassroomDetails() {
         System.out.println("Class Name: " + this.className);
-        // Using Arrays.toString() to cleanly print the elements of the string array
         System.out.println("Students: " + Arrays.toString(this.students));
     }
 
-    // Main method to test the class implementation
     public static void main(String[] args) {
-        // Create an array of student names
-        String[] studentList = {"Alex", "Blake", "Charlie"};
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the Name of the Class:");
+        String className=sc.nextLine();
+        System.out.print("Enter number of Students in the Class: ");
+        int n = sc.nextInt();
+        sc.nextLine(); // consume newline
 
-        // Instantiate the Classroom object using the parameterized constructor
-        Classroom myClassroom = new Classroom("Computer Science 101", studentList);
+        String[] studentList = new String[n];
+        System.out.println("Enter " + n + " Names of the Students:");
+        for (int i = 0; i < n; i++) {
+            studentList[i] = sc.nextLine();
+        }
 
-        // Print the values of the instance variables
+        // Invoking the constructor with 'new'
+        Classroom myClassroom = new Classroom(className, studentList);
         myClassroom.printClassroomDetails();
+
+        sc.close();
     }
 }
