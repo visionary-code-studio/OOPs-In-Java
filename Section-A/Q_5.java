@@ -1,44 +1,45 @@
-import java.util.Scanner;
+import java.util.*;
 
-public class StringOperationsDemo {
+public class StringOperations {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         // Input string
-        System.out.print("Enter a string: ");
-        String str = scanner.nextLine();
+        System.out.println("Enter a String:");
+        String str = sc.nextLine();
 
         // a) Find the length of the string
-        int length = str.length();
-        System.out.println("a) Length of the string: " + length);
+        System.out.println("\n==== Length of a String ====");
+        System.out.println("Length of \"" + str + "\" is " + str.length());
 
         // b) Convert the string to uppercase and lowercase
-        System.out.println("b) Uppercase: " + str.toUpperCase());
-        System.out.println("b) Lowercase: " + str.toLowerCase());
+        System.out.println("\n==== Case Conversion ====");
+        System.out.println("UpperCase: " + str.toUpperCase());
+        System.out.println("LowerCase: " + str.toLowerCase());
 
-        // c) Display the character at a user-specified position
-        System.out.print("c) Enter an index position (0 to " + (length - 1) + "): ");
-        int index = scanner.nextInt();
-        if (index >= 0 && index < length) {
-            char ch = str.charAt(index);
-            System.out.println("   Character at index " + index + ": " + ch);
+        // c) Display the character at a user-specified position (0-indexed or 1-indexed safety)
+        System.out.println("\n==== Display a Character ====");
+        System.out.println("Enter the position (0 to " + (str.length() - 1) + "):");
+        int pos = sc.nextInt();
+        if (pos >= 0 && pos < str.length()) {
+            System.out.println("Character at position " + pos + " is " + str.charAt(pos));
         } else {
-            System.out.println("   Invalid index! Please enter a position within the range.");
+            System.out.println("Pls, Enter a valid position!");
         }
 
         // d) Extract a substring from the given string
-        System.out.print("d) Enter start index for substring: ");
-        int start = scanner.nextInt();
-        System.out.print("   Enter end index for substring: ");
-        int end = scanner.nextInt();
+        System.out.println("\n==== Substring Check ====");
+        System.out.println("Enter the starting index:");
+        int start = sc.nextInt();
+        System.out.println("Enter the ending index:");
+        int end = sc.nextInt();
 
-        try {
-            String subStr = str.substring(start, end);
-            System.out.println("   Extracted substring: " + subStr);
-        } catch (StringIndexOutOfBoundsException e) {
-            System.out.println("   Invalid index range for substring extraction.");
+        if (start >= 0 && end <= str.length() && start <= end) {
+            System.out.println("Substring: " + str.substring(start, end));
+        } else {
+            System.out.println("Invalid Indices!");
         }
 
-        scanner.close();
+        sc.close();
     }
 }
