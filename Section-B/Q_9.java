@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 // Superclass
 class Employee {
     protected int employeeId;
@@ -53,16 +55,48 @@ class Manager extends Employee {
     }
 }
 
-// Main Class to demonstrate Polymorphism
+// Main Class to demonstrate Polymorphism with User Input
 public class Main {
     public static void main(String[] args) {
-        // Creating Employee references for runtime polymorphism
-        Employee emp1 = new Developer(101, "Alice Smith", 50000, 8000);
-        Employee emp2 = new Manager(102, "Bob Johnson", 70000, 15000, 5000);
+        Scanner scanner = new Scanner(System.in);
+        Employee[] employees = new Employee[2];
+
+        // Input for Developer
+        System.out.println("--- Enter Developer Details ---");
+        System.out.print("Enter Employee ID: ");
+        int devId = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+        System.out.print("Enter Name: ");
+        String devName = scanner.nextLine();
+        System.out.print("Enter Basic Salary: ");
+        double devBasic = scanner.nextDouble();
+        System.out.print("Enter Coding Allowance: ");
+        double devAllowances = scanner.nextDouble();
+
+        employees[0] = new Developer(devId, devName, devBasic, devAllowances);
+
+        // Input for Manager
+        System.out.println("\n--- Enter Manager Details ---");
+        System.out.print("Enter Employee ID: ");
+        int mgrId = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+        System.out.print("Enter Name: ");
+        String mgrName = scanner.nextLine();
+        System.out.print("Enter Basic Salary: ");
+        double mgrBasic = scanner.nextDouble();
+        System.out.print("Enter Managerial Bonus: ");
+        double mgrBonus = scanner.nextDouble();
+        System.out.print("Enter Travel Allowance: ");
+        double mgrTravel = scanner.nextDouble();
+
+        employees[1] = new Manager(mgrId, mgrName, mgrBasic, mgrBonus, mgrTravel);
 
         // Polymorphic method calls
-        System.out.println("--- Employee Salary Details (Polymorphism) ---");
-        emp1.displayDetails();
-        emp2.displayDetails();
+        System.out.println("\n--- Employee Salary Details (Polymorphism) ---");
+        for (Employee emp : employees) {
+            emp.displayDetails();
+        }
+
+        scanner.close();
     }
 }
